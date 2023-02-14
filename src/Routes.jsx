@@ -7,7 +7,11 @@ import { AuthProvider, AuthContext } from "./contexts/auth";
 
 const AppRoutes = () => {
     const Private = ({children}) => {
-        const {authenticaded} = useContext(AuthContext);
+        const {authenticaded, loading} = useContext(AuthContext);
+
+        if (loading) {
+            return <div className="loading">Carregando...</div>
+        }
 
         if(!authenticaded) {
             return <Navigate to="/login"/>
