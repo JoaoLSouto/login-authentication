@@ -9,8 +9,18 @@ export const AuthProvider = ({children}) => {
 
     const login = (email, password) => {
         console.log("login auth", {email, password});
+
+        // api criar uma session
+
+        const loggedUser= {
+            id: "123",
+            email,
+        };
+
+        localStorage.setItem("user", JSON.stringify(loggedUser));
+
         if(password === "senha"){
-            setUser({id: "123", email});
+            setUser(loggedUser);
             navigate("/");
         }
 
